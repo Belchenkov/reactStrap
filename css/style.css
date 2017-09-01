@@ -1,0 +1,19 @@
+body {
+    padding-top: 50px;
+  }
+  .starter-template {
+    padding: 40px 15px;
+    text-align: center;
+  }
+
+  i.fa.fa-bookmark {
+    margin-right: 15px;
+    font-size: 1.12em;
+  }
+
+  .jumbotron {
+    text-align: center;
+    margin-top: 35px;
+    border-radius: 4px;
+    background: #e7e7e7;
+  }

@@ -8,8 +8,11 @@
     <title>ReactStrap</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- REACT -->
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
@@ -22,11 +25,71 @@
    
 
     <script type="text/babel">
+         var Navbar = React.createClass({
+            render() {
+                return(
+                    <div>
+                        <nav className="navbar navbar-default navbar-fixed-top">
+                        <div className="container">
+                            <div className="navbar-header">
+                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>
+                            <a className="navbar-brand" href="/">
+                                <i className="fa fa-bookmark"></i>
+                                ReactStrap
+                                </a>
+                            </div>
+                            <div id="navbar" className="collapse navbar-collapse">
+                            <ul className="nav navbar-nav">
+                                <li className="active"><a href="#">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                        </nav>
+                    </div>
+                ); 
+            }
+         });
+
+         var Jumbotron = React.createClass({
+            render() {
+                return(
+                    <div>
+                        <div className="jumbotron container theme-showcase">
+                            <h1>Basic React Website</h1>
+                            <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+                            <p><a href="#" className="btn btn-info btn-lg">Learn More</a></p>
+                        </div>
+                    </div>
+                );
+            }
+         });
+
+         var Page = React.createClass({
+            render() {
+                return(
+                    <div>
+                        <div className="container">
+                            <p className="lead">This is the home Page</p>
+                        </div>
+                    </div>
+                );
+            }
+         });
+
          var Theme = React.createClass({
             render() {
                 return(
                     <div>
-                        <h1>Theme Component</h1>
+                        <Navbar />
+                        <Jumbotron />  
+                        <Page />
                     </div>
                 );
             }
