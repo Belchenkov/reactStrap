@@ -26,6 +26,11 @@
 
     <script type="text/babel">
          var Navbar = React.createClass({
+            getDefaultProps() {
+              return {
+                  brand: 'ReactStrap'
+              }
+            },
             render() {
                 return(
                     <div>
@@ -40,14 +45,20 @@
                             </button>
                             <a className="navbar-brand" href="/">
                                 <i className="fa fa-bookmark"></i>
-                                ReactStrap
+                                {this.props.brand}
                                 </a>
                             </div>
                             <div id="navbar" className="collapse navbar-collapse">
                             <ul className="nav navbar-nav">
-                                <li className="active"><a href="#">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#contact">Contact</a></li>
+                                <li className={(this.props.currentPage === 'home' ? 'active' : '')}>
+                                    <a href="#home">Home</a>
+                                </li>
+                                <li className={(this.props.currentPage === 'about' ? 'active' : '')}>
+                                    <a href="#about">About</a>
+                                </li>
+                                <li className={(this.props.currentPage === 'contact' ? 'active' : '')}>
+                                    <a href="#contact">Contact</a>
+                                </li>
                             </ul>
                             </div>
                         </div>
@@ -62,9 +73,11 @@
                 return(
                     <div>
                         <div className="jumbotron container theme-showcase">
-                            <h1>Basic React Website</h1>
-                            <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
-                            <p><a href="#" className="btn btn-info btn-lg">Learn More</a></p>
+                            <h1>{this.props.heading}</h1>
+                            <p className="lead">{this.props.text}</p>
+                            <p>
+                                <a href="#" className="btn btn-info btn-lg">{this.props.btn_text}</a>
+                            </p>
                         </div>
                     </div>
                 );
@@ -73,10 +86,22 @@
 
          var Page = React.createClass({
             render() {
+                var pageContent;
+                if (this.props.currentPage == 'home') {
+                    pageContent = 'This is Home Page';
+                } else if (this.props.currentPage == 'about') {
+                    pageContent = 'This is About Page';
+                } else if (this.props.currentPage == 'contact') {
+                    pageContent = 'This is Contact Page';
+                } else {
+                    pageContent = 'This is Home Page';
+                }
                 return(
                     <div>
                         <div className="container">
-                            <p className="lead">This is the home Page</p>
+                            <h2>{this.props.currentPage.charAt(0)
+                                .toUpperCase() + this.props.currentPage.slice(1)}</h2>
+                            <p className="lead">{pageContent}</p>
                         </div>
                     </div>
                 );
@@ -87,9 +112,15 @@
             render() {
                 return(
                     <div>
-                        <Navbar />
-                        <Jumbotron />  
-                        <Page />
+                        <Navbar brand="ReactStrap" currentPage="home"/>
+                        <Jumbotron
+                                heading="This is Simple React.js Website"
+                                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis debitis dignissimos dolor dolorem earum facilis laudantium, nam nemo optio porro provident quae quidem recusandae repellendus tempora veniam voluptas, voluptatem."
+                                btn_text="Learn More"
+                        />
+                        <Page
+                            currentPage="home"
+                        />
                     </div>
                 );
             }
